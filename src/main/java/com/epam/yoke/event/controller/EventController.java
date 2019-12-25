@@ -7,6 +7,7 @@ import com.epam.yoke.event.service.EventService;
 import com.epam.yoke.event.service.NotifyService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,13 +49,16 @@ public class EventController {
   @PostMapping(value = "/")
   @ApiOperation(value = "Save event", response = EventResponse.class)
   public EventResponse create(@RequestBody EventBody event) {
-    return eventService.saveEvent(event);
+    EventResponse response = eventService.saveEvent(event);
+    notifyService.createEvent(response.getId(), response.getDescription());
+    return response;
   }
 
   @DeleteMapping(value = "/{id}")
   @ApiOperation(value = "Delete event")
   public void delete(@PathVariable String id) {
     eventService.deleteEvent(id);
+    notifyService.deleteEvent(id);
   }
 
   @GetMapping("/notify/all")

@@ -1,6 +1,9 @@
 package com.epam.yoke.event.dao;
 
+import com.epam.yoke.event.model.rq.NotifyEventBody;
 import com.epam.yoke.event.model.rs.NotifyEvent;
+import com.epam.yoke.event.model.rs.NotifyEventResponse;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,5 +21,13 @@ public class NotifierDao {
 
   public List<NotifyEvent> retrieveNotifyEvents() {
     return (List<NotifyEvent>) restTemplate.getForObject(notifierUrl + "/", Object.class);
+  }
+
+  public void deleteEvent(String eventId) {
+    restTemplate.delete(notifierUrl + "/" + eventId);
+  }
+
+  public NotifyEventResponse createEvent(NotifyEventBody event) {
+    return restTemplate.postForObject(notifierUrl + "/", event, NotifyEventResponse.class);
   }
 }

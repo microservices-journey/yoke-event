@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NonNull;
 
 @Entity
-@Table(name = "user")
+@Table(name = "person")
 @Data
 public class User {
 

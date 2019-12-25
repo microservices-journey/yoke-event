@@ -37,11 +37,18 @@ dependencies {
   compile group: 'io.springfox', name: 'springfox-swagger-ui', version: "${project.('springfox-swagger-ui.version')}"
   compileOnly group: 'org.projectlombok', name: 'lombok', version: "${project.('lombok.version')}"
 
-  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+  testCompile group: 'com.h2database', name: 'h2', version: "${project.('h2.version')}"
+
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${project.('lombok.version')}"
   annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: "${project.property("mapstruct.version")}"
 }
 
+test {
+  useJUnitPlatform()
+}
 
 bootJar {
   mainClassName = 'com.epam.yoke.event.YokeEventApplication'

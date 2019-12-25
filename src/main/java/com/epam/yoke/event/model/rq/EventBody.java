@@ -33,4 +33,7 @@ public class EventBody {
   @NotNull(message = "LocationId is mandatory")
   @ApiModelProperty(required = true, value = "Requested locationId")
   private Long locationId;
+
+  @ApiModelProperty(value = "Event description")
+  private String description;
 }

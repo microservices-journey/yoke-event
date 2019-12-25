@@ -13,15 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Entity
 @Table(name = "event")
 @Data
+@NoArgsConstructor
 public class Event {
-
-  public Event() {
-  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

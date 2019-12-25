@@ -30,4 +30,7 @@ public class EventResponse {
 
   @ApiModelProperty(required = true, value = "Event locationId")
   private Long locationId;
+
+  @ApiModelProperty(value = "Event description")
+  private String description;
 }
