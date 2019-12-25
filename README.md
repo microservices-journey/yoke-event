@@ -1,6 +1,19 @@
 # ws-yoke-event
 MS Yoke Event
 
+#### Step 0. 
+```
+docker pull postgres
+docker pull mongo
+docker pull wurstmeister/kafka
+docker pull wurstmeister/zookeeper
+docker pull obsidiandynamics/kafdrop
+docker pull docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+docker pull docker.elastic.co/kibana/kibana:7.2.0
+docker pull docker.elastic.co/logstash/logstash:7.2.0
+docker pull openzipkin/zipkin
+```
+
 #### Step 1.
 Start postgres: `docker-compose up -d`
 
