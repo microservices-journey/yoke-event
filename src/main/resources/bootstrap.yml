@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: yoke-event
+  cloud:
+    config:
+      uri: http://localhost:8888
+      enabled: true
+      discovery:
+        enabled: true
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8083
+encrypt:
+  key: keyName

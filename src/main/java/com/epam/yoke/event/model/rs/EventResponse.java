@@ -1,36 +1,35 @@
 package com.epam.yoke.event.model.rs;
 
-import java.util.Date;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-@ApiModel(description = "Event response")
+@Schema(description = "Event response")
 public class EventResponse {
 
-  @ApiModelProperty(required = true, value = "Event id")
+  @Schema(required = true, description = "Event id")
   private Long id;
 
-  @ApiModelProperty(required = true, value = "Event date")
+  @Schema(required = true, description = "Event date")
   private Date date;
 
-  @ApiModelProperty(required = true, value = "Event capacity")
+  @Schema(required = true, description = "Event capacity")
   private Integer capacity;
 
-  @ApiModelProperty(required = true, value = "Event slot")
+  @Schema(required = true, description = "Event slot")
   private Integer slot;
 
-  @ApiModelProperty(required = true, value = "Event locationId")
+  @Schema(required = true, description = "Event locationId")
   private Long locationId;
 
-  @ApiModelProperty(value = "Event description")
+  @Schema(description = "Event description")
   private String description;
 }
