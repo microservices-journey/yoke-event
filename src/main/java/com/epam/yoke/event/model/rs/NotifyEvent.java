@@ -1,11 +1,11 @@
 package com.epam.yoke.event.model.rs;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class NotifyEvent {
 
-  public String eventId;
-  public List<String> emails;
-  public String description;
+    public String eventId;
+    public List<String> emails;
+    public String description;
 }
