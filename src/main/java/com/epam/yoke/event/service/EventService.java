@@ -33,6 +33,10 @@ public class EventService {
         return eventMapper.mapResponses((List<Event>) eventRepository.findAll());
     }
 
+    public long countCreatedRecords() {
+        return eventRepository.count();
+    }
+
     public EventResponse findEventById(String id) {
         logger.info("Find id: {}", id);
         Event event = eventRepository.findById(Long.valueOf(id))

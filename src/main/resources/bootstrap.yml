@@ -19,3 +19,7 @@ server:
   port: 8083
 encrypt:
   key: keyName
+management:
+  endpoint:
+    health:
+      show-details: always
