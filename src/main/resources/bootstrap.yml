@@ -2,20 +2,24 @@ spring:
   application:
     name: yoke-event
   cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
     config:
-      uri: http://localhost:8888
       enabled: true
       discovery:
         enabled: true
+      failFast: true
+      retry:
+        initial-interval: 10000
+        multiplier: 1.5
+        max-attempts: 20
+        max-interval: 15000
 eureka:
-  instance:
-    preferIpAddress: true
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
 server:
   port: 8083
-encrypt:
-  key: keyName
