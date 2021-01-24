@@ -1,10 +1,14 @@
 spring:
   application:
     name: yoke-event
+  datasource:
+    initialization-mode: always
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
     config:
       enabled: true
       discovery:
@@ -27,3 +31,7 @@ management:
   endpoint:
     health:
       show-details: always
+logback:
+  destination:
+    url: logstash
+    port: 5000

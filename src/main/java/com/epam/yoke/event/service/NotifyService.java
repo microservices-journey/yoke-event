@@ -1,10 +1,8 @@
 package com.epam.yoke.event.service;
 
 import com.epam.yoke.event.dao.NotifierDao;
-import com.epam.yoke.event.mapper.EventMapper;
 import com.epam.yoke.event.model.rq.NotifyEventBody;
 import com.epam.yoke.event.model.rs.NotifyEvent;
-import com.epam.yoke.event.model.rs.NotifyEventResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +16,12 @@ public class NotifyService {
     private static final Logger logger = LoggerFactory.getLogger(NotifyService.class);
 
     private NotifierDao notifierDao;
-    private EventMapper eventMapper;
+    private StreamService streamService;
 
     @Autowired
-    public NotifyService(NotifierDao notifierDao, EventMapper eventMapper) {
+    public NotifyService(NotifierDao notifierDao, StreamService streamService) {
         this.notifierDao = notifierDao;
-        this.eventMapper = eventMapper;
+        this.streamService = streamService;
     }
 
     public List<NotifyEvent> getEvents() {
@@ -31,16 +29,14 @@ public class NotifyService {
     }
 
     public void deleteEvent(String eventId) {
-        notifierDao.deleteEvent(eventId);
+        streamService.deleteEvent(eventId);
     }
 
-    public NotifyEventResponse createEvent(Long eventId, String description) {
-        NotifyEventBody rq = new NotifyEventBody();
-        rq.setEventId(String.valueOf(eventId));
-        rq.setDescription(description);
-
-        NotifyEventResponse res = notifierDao.createEvent(rq);
-        logger.info("Created event for the notifier: {}", res);
-        return res;
+    public void createEvent(Long eventId, String description) {
+        NotifyEventBody event = new NotifyEventBody();
+        event.setEventId(String.valueOf(eventId));
+        event.setDescription(description);
+        streamService.createEvent(event);
+        logger.info("Created event for the notifier");
     }
 }
